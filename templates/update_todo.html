@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+ 
+{% block body %}
+<div class="container mt-5">
+
+    <h1 class="mb-4">Update Todo</h1>
+    <form method = "post">
+
+        {% csrf_token %}
+        {% comment %} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~TASK NAME~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% endcomment %}
+        <div class="form-group">
+            <label for="taskName">Task Name</label>
+            <textarea class="form-control" id="taskName" rows="2" placeholder="Enter task name" name = "task" required>{{ todo.task }}</textarea>
+        </div>
+        {% comment %} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~CREATED AT~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% endcomment %}
+        <div class="form-group">
+            <label for="createdDate">Created Date</label>
+            <input type="date" class="form-control" id="createdDate" name = "created_at" required>
+        </div>
+        {% comment %} ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DUE AT~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {% endcomment %}
+        <div class="form-group">
+            <label for="dueDate">Due Date</label>
+            <input type="date" class="form-control" id="dueDate" name = "due_at" required>
+        </div>
+
+        <button type="submit" class = "btn btn-primary">Add Task</button>
+        
+    </form>
+</div> 
+{% endblock %} 

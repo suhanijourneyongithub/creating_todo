@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <div class="container mt-5">
+
+        <h1 class="mb-4">Task List</h1>
+
+        <table class="table">
+
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Task</th>
+                    <th scope="col">Created On</th>
+                    <th scope="col">Due Date</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead> 
+
+            <tbody id = "tbody_todo">
+
+                {% for todo in todos %} 
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}.</th>
+                        <td>{{ todo.task }}</td>
+                        <td>{{ todo.created_at }}</td>
+                        <td>{{ todo.due_at }}</td>
+                        <td> 
+                            <a href = "{% url 'update_todo' todo.id %}" class="btn btn-warning btn-sm">Update</a>
+                            <a href = "{% url 'delete_todo' todo.id %}" class="btn btn-danger btn-sm">Delete</a>
+                            <a href = "{% url 'mark_complete' todo.id %}" class="btn btn-outline-success btn-sm">Complete</a> 
+                        </td> 
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+        <a href="{% url 'add_todo' %}" class="btn btn-custom">Add task</a>
+        
+    </div>
+         
+{% endblock %} 
+
+        {% comment %} <br><br><br> 
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~MARK_COMPLETE~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+        <h1 class="mb-4">Completed Tasks</h1>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Task</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody id = "tbody_todo">
+                {% for i in todos01 %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}.</th>
+                        <td>{{ i.task }}</td>
+                        <td>
+                            <button class="btn btn-success btn-sm">Completed</button> 
+                        </td> 
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>{% endcomment %}
+    
