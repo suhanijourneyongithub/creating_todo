@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
-    path("cls", views.landing_page, name = "landing_page"),
+    path("", views.landing_page, name = "landing_page"),
 
     path("to_do", views.to_do, name = "to_do"),
 

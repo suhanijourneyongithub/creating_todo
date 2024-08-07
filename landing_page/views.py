@@ -10,10 +10,13 @@ def landing_page(request):
 def to_do(request):
 
     user = request.user
-    print(user.username)
     
-    todos = Todo.objects.filter(is_completed = False)
-    parameters = { "todos": todos }
+    todos = Todo.objects.filter(is_completed = False, user = user)#user = user me 1st user is model's attribute and 2nd one is the variable in upper line
+    
+    parameters = {
+        "todos": todos,
+        "user": user
+    }
 
     return render(request, "todo.html", parameters)
 
@@ -28,7 +31,7 @@ def add_todo(request):
         user_due_at = request.POST.get("due_at")
 
         #view wala data model m save ho rha hai
-        new_todo = Todo(task = user_task, created_at = user_created_at, due_at = user_due_at, is_completed = False)
+        new_todo = Todo(task = user_task, created_at = user_created_at, due_at = user_due_at, is_completed = False, user = request.user)
         new_todo.save()
 
         return redirect("to_do")
@@ -103,3 +106,7 @@ def profile_pic(request): #request, pic_id
     parameters = {"image": image}
 
     return render(request, "upload_profile_pic.html", parameters)
+
+# def logout(request):
+#     auth.logout(request)
+#     return redirect("login")

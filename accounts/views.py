@@ -10,11 +10,10 @@ def login(request):
         input_password = request.POST.get("password")
 
         user = auth.authenticate(username = input_username, password = input_password)
-        print(user)
+        # print(user)
         if user is not None:
 
             auth.login(request, user) #isse session create ho rha hai ---or--- is request ke pass user ki details save ho rhi hai
-
             return redirect("to_do")
         
         else:
